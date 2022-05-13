@@ -1,6 +1,8 @@
 import React from 'react';
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from '@apollo/react-hooks';
+import { Button } from './components/Button/index.component';
+import { Input } from './components/Input/index.component';
 
 const client = new ApolloClient({
 	uri: 'https://48p1r2roz4.sse.codesandbox.io',
@@ -8,14 +10,8 @@ const client = new ApolloClient({
 
 const App = () => (
 	<ApolloProvider client={client}>
-		<div>
-			<h2>
-				My first Apollo app{' '}
-				<span role='img' aria-label='Rocket'>
-					🚀
-				</span>
-			</h2>
-		</div>
+		<Button>D</Button>
+		<Input />
 	</ApolloProvider>
 );
 export default App;
