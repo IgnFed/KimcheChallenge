@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { gql } from 'apollo-boost';
 import { useQuery } from '@apollo/react-hooks';
-import { Container } from './components/Searcher/index.component';
+import { Container } from './components/Container/index.component';
 import { Button } from './components/Button/index.component';
 import { Input } from './components/Input/index.component';
 import styled from 'styled-components';
+import { SearchIcon } from './components/Icons';
 // import { Select } from './components/Select/index.component';
 
 const GET_COUNTRIES = gql`
@@ -35,7 +36,17 @@ const FormContainer = styled(Container)`
 
 const StyledLayout = styled.div`
 	margin-top: 4rem;
-	height: 100vh;
+	max-height: calc(100vh - 5rem);
+`;
+
+const FiltersContainer = styled.div`
+	display: grid;
+	grid-template-columns: 30% 1fr;
+`;
+
+const Title = styled.h1`
+	width: 70%;
+	margin: 0 auto 2rem auto;
 `;
 
 const App = () => {
@@ -58,26 +69,30 @@ const App = () => {
 
 	return (
 		<StyledLayout>
-			<h1>Country Seacrh</h1>
+			<Title>Country Search</Title>
 			<FormContainer as='form' onSubmit={handleSubmit}>
-				<Input
-					value={searcherValue}
-					onChange={handleChange}
-					placeholder={'Search Country'}
-				/>
 				<Container>
-					<h3>Group By: </h3>
-					{COUNTRIES_FILTERS.map((v, i) => (
-						<span
-							key={i}
-							onClick={() => handleFilter(v)}
-							className={`${currentFilter === v && 'active'} `}
-						>
-							{v}
-						</span>
-					))}
+					<SearchIcon />
+					<Input
+						value={searcherValue}
+						onChange={handleChange}
+						placeholder={'Search Country'}
+					/>
 				</Container>
-				<Button type='submit'>Search</Button>
+				<FiltersContainer>
+					<h3>Group By: </h3>
+					<Container>
+						{COUNTRIES_FILTERS.map((v, i) => (
+							<Button
+								key={i}
+								onClick={() => handleFilter(v)}
+								className={`${currentFilter === v && 'active'} `}
+							>
+								{v}
+							</Button>
+						))}
+					</Container>
+				</FiltersContainer>
 			</FormContainer>
 		</StyledLayout>
 	);
