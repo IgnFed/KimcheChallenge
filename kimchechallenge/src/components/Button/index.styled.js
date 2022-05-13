@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
 export default styled.button`
-	background-color: ${props =>
-		props.theme.mode === 'light' ? '#9395bd' : '#393b59'};
+	@media (max-width: 26.875rem) {
+		width: 75%;
+		align-self: center;
+	}
 `;
