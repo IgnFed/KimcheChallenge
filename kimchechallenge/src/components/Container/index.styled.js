@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export default styled.div`
+	position: relative;
 	display: flex;
 	align-self: center;
 	justify-content: center;
