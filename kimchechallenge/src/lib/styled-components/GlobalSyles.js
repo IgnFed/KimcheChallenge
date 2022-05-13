@@ -11,18 +11,23 @@ export default createGlobalStyle`
 		color: ${props => (props.theme.mode === 'dark' ? '#ffffff' : '#000000')};
 	}
 
-	button, input, select {
+	button, input{
 		padding: .75rem;
 		border: none;
 		outline: none;
 		background-color: ${props =>
-			props.theme.mode === 'light' ? '#9395bd' : '#393b59'};
-		border-radius: .475rem
+			props.theme.mode === 'light' ? '#4b486e' : '#393b59'};
+		color:	#fff;
+		border-radius: .475rem;
+		width: 100%;
+	}
+	
+	button {
+		cursor: pointer;
+		transition: background-color .2s;
 	}
 	.active{
-		background-color: red;
-	}
-	input {
-		width: 100%
+		background-color: ${props =>
+			props.theme.mode === 'light' ? '#2e2687' : '#5889ad'};
 	}
 `;
