@@ -4,6 +4,13 @@ import { lightTheme, darkTheme } from '../../lib/styled-components/themes';
 import GlobalSyles from '../../lib/styled-components/GlobalSyles';
 import Button from '../Button/index.styled';
 import { MoonIcon, SunIcon } from '../Icons';
+import { ApolloProvider } from '@apollo/react-hooks';
+import ApolloClient from 'apollo-boost';
+import { motion } from 'framer-motion/dist/framer-motion';
+
+const CLIENT = new ApolloClient({
+	uri: 'https://countries.trevorblades.com/',
+});
 
 const ToggleButton = styled(Button)`
 	position: absolute;
@@ -15,11 +22,12 @@ const ToggleButton = styled(Button)`
 	background-color: transparent;
 `;
 
-const StyledWrapper = styled.main`
+const StyledWrapper = styled(motion.main)`
 	width: 100%;
 	height: 100vh;
 	padding: 0.5rem;
 	background-color: ${props => props.theme.themeObj.colors.background};
+	transition: background-color 0.2s;
 `;
 
 export const Wrapper = ({ children }) => {
@@ -38,13 +46,17 @@ export const Wrapper = ({ children }) => {
 		<>
 			<ThemeProvider theme={theme}>
 				<GlobalSyles />
-				<StyledWrapper>
+				<StyledWrapper
+					initial={{ opacity: 0 }}
+					animate={{ opacity: 1 }}
+					transition={{ duration: 1 }}
+				>
 					<ToggleButton onClick={ToggleTheme} mode={theme.mode}>
 						{(theme.mode === 'dark' && <MoonIcon fill='#4827ab' />) || (
 							<SunIcon fill='#4827ab' />
 						)}
 					</ToggleButton>
-					{children}
+					<ApolloProvider client={CLIENT}>{children}</ApolloProvider>
 				</StyledWrapper>
 			</ThemeProvider>
 		</>
