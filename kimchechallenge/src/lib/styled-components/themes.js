@@ -6,6 +6,8 @@ export const lightTheme = {
 		background: '#f0f0f7',
 		text: '#000000',
 	},
+
+	outlineColor: 'blueviolet',
 };
 
 export const darkTheme = {
@@ -16,4 +18,5 @@ export const darkTheme = {
 		background: '#1d1f38',
 		text: '#ffffff',
 	},
+	outlineColor: 'bisque',
 };
