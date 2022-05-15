@@ -6,7 +6,7 @@ import Button from '../Button/index.styled';
 import { MoonIcon, SunIcon } from '../Icons';
 import { ApolloProvider } from '@apollo/react-hooks';
 import ApolloClient from 'apollo-boost';
-import { motion } from 'framer-motion/dist/framer-motion';
+import { AnimatePresence, motion } from 'framer-motion/dist/framer-motion';
 
 const CLIENT = new ApolloClient({
 	uri: 'https://countries.trevorblades.com/',
@@ -43,7 +43,7 @@ export const Wrapper = ({ children }) => {
 	};
 
 	return (
-		<>
+		<AnimatePresence initial={false}>
 			<ThemeProvider theme={theme}>
 				<GlobalSyles />
 				<StyledWrapper
@@ -59,6 +59,6 @@ export const Wrapper = ({ children }) => {
 					<ApolloProvider client={CLIENT}>{children}</ApolloProvider>
 				</StyledWrapper>
 			</ThemeProvider>
-		</>
+		</AnimatePresence>
 	);
 };
