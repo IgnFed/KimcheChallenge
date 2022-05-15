@@ -11,9 +11,6 @@ export default gql`
 				languages {
 					name
 				}
-				continent {
-					name
-				}
 				capital
 			}
 		}
