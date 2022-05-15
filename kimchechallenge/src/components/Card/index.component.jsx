@@ -19,6 +19,10 @@ export const Card = ({ countryData }) => (
 				<StyledExtraInfoSpan>Capital</StyledExtraInfoSpan>:{' '}
 				{countryData.capital}
 			</p>
+			<p>
+				<StyledExtraInfoSpan>Native Language</StyledExtraInfoSpan>:{' '}
+				{countryData.languages[0]?.name || '-'}
+			</p>
 		</section>
 	</StyledArticle>
 );
