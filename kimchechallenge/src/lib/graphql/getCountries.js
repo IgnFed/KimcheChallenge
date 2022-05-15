@@ -5,6 +5,7 @@ const GET_COUNTRIES = gql`
 		countries {
 			name
 			native
+			emoji
 			languages {
 				name
 			}
