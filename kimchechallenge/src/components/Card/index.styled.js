@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const StyledTopSection = styled.section`
 	display: flex;
+	align-items: center;
 	gap: 0.75rem;
 `;
 
