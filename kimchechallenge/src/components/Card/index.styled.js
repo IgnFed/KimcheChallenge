@@ -6,7 +6,7 @@ export const StyledTopSection = styled.section`
 `;
 
 export const StyledExtraInfoSpan = styled.span`
-	color: #ccc;
+	color: ${props => props.theme.themeObj.color};
 	text-decoration: underline;
 	margin-bottom: auto.75rem;
 `;
