@@ -1,6 +1,6 @@
 # Desafío para Software Engineers
 
-## Nombre postulante: <a href="https://ignfed.vercel.app/" target="__blank">Ignacio Fedorenco</a>
+## Nombre postulante: [Ignacio Fedorenco](https://ignfed.vercel.app/){:target="_blank"}
 
 ## Deploy hecho con [Vercel](https://vercel.com/): [Sitio Web](https://kimche-challenge-phi.vercel.app/)
 
