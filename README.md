@@ -18,6 +18,6 @@
 ```sh 
 npm run start:legacy
 ```
-No tengo muy en claro el problema, pero puede ser a causa de la version de <code>react-scripts</code>. 
+Este comando contiene el parámetro --openssl-legacy-provider (se necesita Node v17) que sirve para manterer el tamaño de llave en OpenSSL V3. 
 
 ## Respuesta a la pregunta sobre base de datos [aquí](./kimchechallenge/README.md)
