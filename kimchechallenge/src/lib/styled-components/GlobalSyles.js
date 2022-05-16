@@ -11,6 +11,10 @@ export default createGlobalStyle`
 		color: ${props => (props.theme.mode === 'dark' ? '#ffffff' : '#000000')};
 	}
 
+	li {
+		list-style: none;
+	}
+
 	button, input{
 		padding: .75rem;
 		border: none;
