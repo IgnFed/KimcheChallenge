@@ -1,3 +1,3 @@
-import GET_CONTINENTS from './continent';
+import GET_COUNTRIES from './countries';
 
-export { GET_CONTINENTS };
+export { GET_COUNTRIES };
