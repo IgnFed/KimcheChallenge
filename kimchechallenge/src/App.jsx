@@ -1,12 +1,14 @@
-import React, { useEffect, useReducer, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useQuery } from '@apollo/react-hooks';
-import { GET_CONTINENTS } from './lib/graphql';
+import { GET_COUNTRIES } from './lib/graphql';
 import { Container } from './components/Container/index.component';
 import { Button } from './components/Button/index.component';
 import { Input } from './components/Input/index.component';
 import styled from 'styled-components';
 import { SearchIcon } from './components/Icons';
 import { ContinentsList } from './components/Continent/index.component';
+import countries from './lib/graphql/countries';
+import useDebounce from './hooks/useDebounce';
 
 const COUNTRIES_FILTERS = ['continent', 'language'];
 
@@ -35,66 +37,39 @@ const Title = styled.h1`
 	margin: 0 auto 2rem auto;
 `;
 
-const INITIAL_DATA = [];
-
-function reducer(data, action) {
-	const { payload, changeLoading } = action;
-
-	switch (action.filter) {
-		case 'continent':
-			payload.forEach(continent => {
-				continent.countries.sort(
-					(a, b) => (a.name < b.name && -1) || (a.name > b.name && 1) || 0
-				);
-			});
-			changeLoading();
-			return payload;
-		case 'language':
-			payload.forEach(continent => {
-				continent.countries.sort();
-			});
-	}
-}
-
 const App = () => {
 	const [searcherValue, setSearcherValue] = useState('');
 	const [currentFilter, setCurrentFilter] = useState(COUNTRIES_FILTERS[0]);
-	const [loading, setLoading] = useState(true);
-	const { data } = useQuery(GET_CONTINENTS);
-	const [continents, dispatch] = useReducer(reducer, INITIAL_DATA);
+	const [firstSearch, setFirstSearch] = useState(true);
+	const [filteredCountries, setFilteredCountries] = useState([]);
+	const { loading, data, error } = useQuery(GET_COUNTRIES);
+	const valueDebounced = useDebounce(searcherValue, 500);
 
 	useEffect(() => {
-		if (!data || !data.continents) return;
-		dispatch({
-			filter: currentFilter,
-			payload: data.continents || [],
-			changeLoading: () => setLoading(false),
-		});
-	}, [data]);
+		if (loading) return;
+		setFilteredCountries(filterByName(valueDebounced.toLowerCase()));
+	}, [data, valueDebounced]);
+
+	const filterByName = name =>
+		countries &&
+		data.countries.filter(country => country.name.toLowerCase().includes(name));
 
 	const handleFilter = filterName => {
 		setCurrentFilter(filterName);
-		setLoading(true);
 	};
-
-	const handleSubmit = e => {
-		e.preventDefault();
-		setLoading(true);
-	};
-
-	const handleChange = e => {
-		setSearcherValue(e.target.value);
-	};
-
+	if (error) return <h1>Error</h1>;
 	return (
 		<StyledLayout>
 			<Title>Country Search</Title>
-			<FormContainer as='form' onSubmit={handleSubmit}>
+			<FormContainer as='form'>
 				<Container>
 					<SearchIcon />
 					<Input
 						value={searcherValue}
-						onChange={handleChange}
+						onChange={e => {
+							setSearcherValue(e.target.value);
+							firstSearch && setFirstSearch(false);
+						}}
 						placeholder={'Search Country'}
 					/>
 				</Container>
@@ -114,8 +89,13 @@ const App = () => {
 				</FiltersContainer>
 			</FormContainer>
 			<FormContainer as={'div'}>
-				{!loading ? (
-					<ContinentsList continents={continents} />
+				{firstSearch ? (
+					<span>Search for Something</span>
+				) : !loading ? (
+					<ContinentsList
+						currentFilter={currentFilter}
+						countries={filteredCountries}
+					/>
 				) : (
 					<>Loading...</>
 				)}
