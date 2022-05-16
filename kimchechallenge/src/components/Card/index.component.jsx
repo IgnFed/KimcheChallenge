@@ -2,6 +2,8 @@ import React from 'react';
 import StyledArticle, {
 	StyledExtraInfoSpan,
 	StyledTopSection,
+	EmojiStyled,
+	StyledExtraInfoSection,
 } from './index.styled';
 
 export const Card = ({ countryData, currentFilter }) => (
@@ -13,10 +15,10 @@ export const Card = ({ countryData, currentFilter }) => (
 		</h2>
 		<StyledArticle>
 			<StyledTopSection>
-				<span>{countryData.emoji}</span>
+				<EmojiStyled>{countryData.emoji}</EmojiStyled>
 				<h3>{countryData.name}</h3>
 			</StyledTopSection>
-			<section>
+			<StyledExtraInfoSection>
 				<p>
 					<StyledExtraInfoSpan>Capital</StyledExtraInfoSpan>:{' '}
 					{countryData.capital || 'No Found'}
@@ -29,7 +31,7 @@ export const Card = ({ countryData, currentFilter }) => (
 					<StyledExtraInfoSpan>Native Language</StyledExtraInfoSpan>:{' '}
 					{countryData.languages[0]?.name || 'No Found'}
 				</p>
-			</section>
+			</StyledExtraInfoSection>
 		</StyledArticle>
 	</>
 );
