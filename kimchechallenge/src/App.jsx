@@ -51,8 +51,9 @@ const App = () => {
 	}, [data, valueDebounced]);
 
 	const filterByName = name =>
-		countries &&
-		data.countries.filter(country => country.name.toLowerCase().includes(name));
+		data.countries?.filter(country =>
+			country.name.toLowerCase().includes(name)
+		) || [];
 
 	const handleFilter = filterName => {
 		setCurrentFilter(filterName);
