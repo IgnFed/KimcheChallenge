@@ -14,7 +14,7 @@ export const Card = ({ countryData, currentFilter }) => (
 		<StyledArticle>
 			<StyledTopSection>
 				<span>{countryData.emoji}</span>
-				<h4>{countryData.name}</h4>
+				<h3>{countryData.name}</h3>
 			</StyledTopSection>
 			<section>
 				<p>
