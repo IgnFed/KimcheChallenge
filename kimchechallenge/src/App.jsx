@@ -59,50 +59,54 @@ const App = () => {
 		setCurrentFilter(filterName);
 	};
 
-	if (error)
-		return <Message type='error'>Error. Please, reload the page.</Message>;
 	return (
 		<StyledLayout>
-			<Title>Country Search</Title>
-			<FormContainer onSubmit={e => e.preventDefault} as='form'>
-				<Container>
-					<SearchIcon />
-					<Input
-						value={searcherValue}
-						onChange={e => {
-							setSearcherValue(e.target.value);
-							firstSearch && setFirstSearch(false);
-						}}
-						placeholder={'Search Country'}
-					/>
-				</Container>
-				<FiltersContainer>
-					<h3>Group By: </h3>
-					<Container>
-						{COUNTRIES_FILTERS.map((v, i) => (
-							<Button
-								key={i}
-								onClick={() => handleFilter(v)}
-								className={`${currentFilter === v && 'active'} `}
-							>
-								{v}
-							</Button>
-						))}
-					</Container>
-				</FiltersContainer>
-			</FormContainer>
-			<FormContainer as={'div'}>
-				{firstSearch ? (
-					<Message type='info'>Search for something</Message>
-				) : !loading ? (
-					<CountriesList
-						currentFilter={currentFilter}
-						countries={filteredCountries}
-					/>
-				) : (
-					<Message type='info'>Loading...</Message>
-				)}
-			</FormContainer>
+			{error ? (
+				<Message type='error'>Error. Please, reload the page.</Message>
+			) : (
+				<>
+					<Title>Country Search</Title>
+					<FormContainer onSubmit={e => e.preventDefault} as='form'>
+						<Container>
+							<SearchIcon />
+							<Input
+								value={searcherValue}
+								onChange={e => {
+									setSearcherValue(e.target.value);
+									firstSearch && setFirstSearch(false);
+								}}
+								placeholder={'Search Country'}
+							/>
+						</Container>
+						<FiltersContainer>
+							<h3>Group By: </h3>
+							<Container>
+								{COUNTRIES_FILTERS.map((v, i) => (
+									<Button
+										key={i}
+										onClick={() => handleFilter(v)}
+										className={`${currentFilter === v && 'active'} `}
+									>
+										{v}
+									</Button>
+								))}
+							</Container>
+						</FiltersContainer>
+					</FormContainer>
+					<FormContainer as={'div'}>
+						{firstSearch ? (
+							<Message type='info'>Search for something</Message>
+						) : !loading ? (
+							<CountriesList
+								currentFilter={currentFilter}
+								countries={filteredCountries}
+							/>
+						) : (
+							<Message type='info'>Loading...</Message>
+						)}
+					</FormContainer>
+				</>
+			)}
 		</StyledLayout>
 	);
 };
