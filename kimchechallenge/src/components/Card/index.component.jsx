@@ -13,7 +13,10 @@ export const Card = ({ countryData, currentFilter }) => (
 				? countryData.continent.name
 				: countryData.languages[0]?.name ?? 'No Name'}
 		</h2>
-		<StyledArticle>
+		<StyledArticle
+			initial={{ opacity: 0, y: 15 }}
+			animate={{ opacity: 1, y: 0 }}
+		>
 			<StyledTopSection>
 				<EmojiStyled>{countryData.emoji}</EmojiStyled>
 				<h3>{countryData.name}</h3>

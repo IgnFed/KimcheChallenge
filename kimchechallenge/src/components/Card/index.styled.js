@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
 
 export const StyledTopSection = styled.section`
 	display: flex;
@@ -27,7 +28,7 @@ export const EmojiStyled = styled(StyledExtraInfoSpan)`
 	text-align: center;
 `;
 
-export default styled.article`
+export default styled(motion.article)`
 	display: grid;
 	padding: 1rem;
 	color: #ffffff;
