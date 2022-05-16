@@ -20,8 +20,7 @@ export const StyledExtraInfoSpan = styled.span`
 
 export const EmojiStyled = styled(StyledExtraInfoSpan)`
 	background-color: ${props =>
-		props.theme.mode === 'dark' ? '#393b59' : '#4b486e'};
-	color: #ffffff;
+		props.theme.mode === 'dark' ? '#093b59' : '#6b486e'};
 	height: 25px;
 	width: 30px;
 	border-radius: 0.75rem;
@@ -31,9 +30,20 @@ export const EmojiStyled = styled(StyledExtraInfoSpan)`
 export default styled.article`
 	display: grid;
 	padding: 1rem;
+	color: #ffffff;
+	background-color: ${props =>
+		props.theme.mode === 'dark' ? '#293b59' : '#0b486e'};
+	box-shadow: ${props =>
+		props.theme.mode === 'dark'
+			? '3px 3px 3px #0b486e'
+			: '3px 3px 3px #393b59'};
 	grid-template-rows: 2em 1fr;
 	width: 100%;
 	height: fit-content;
 	border: 1px solid #ddd;
-	border-radius: 1rem;
+	border-radius: 0.75rem;
+	transition: border-radius 0.2s;
+	:hover {
+		border-radius: 1.3rem;
+	}
 `;
