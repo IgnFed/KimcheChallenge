@@ -14,7 +14,7 @@
 	},
 	"scripts": {
 		"start": "react-scripts start",
-		"build": "react-scripts",
+		"build": "react-scripts build",
 		"start:legacy": "react-scripts --openssl-legacy-provider start",
 		"build:legacy": "react-scripts --openssl-legacy-provider build",
 		"eject": "react-scripts eject",
