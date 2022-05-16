@@ -4,25 +4,32 @@ import StyledArticle, {
 	StyledTopSection,
 } from './index.styled';
 
-export const Card = ({ countryData }) => (
-	<StyledArticle>
-		<StyledTopSection>
-			<span>{countryData.emoji}</span>
-			<h4>{countryData.name}</h4>
-		</StyledTopSection>
-		<section>
-			<p>
-				<StyledExtraInfoSpan>Continent</StyledExtraInfoSpan>:{' '}
-				{countryData.continent.name}
-			</p>
-			<p>
-				<StyledExtraInfoSpan>Capital</StyledExtraInfoSpan>:{' '}
-				{countryData.capital}
-			</p>
-			<p>
-				<StyledExtraInfoSpan>Native Language</StyledExtraInfoSpan>:{' '}
-				{countryData.languages[0]?.name || '-'}
-			</p>
-		</section>
-	</StyledArticle>
+export const Card = ({ countryData, currentFilter }) => (
+	<>
+		<h2>
+			{currentFilter === 'continent'
+				? countryData.continent.name
+				: countryData.languages[0]?.name ?? 'No Name'}
+		</h2>
+		<StyledArticle>
+			<StyledTopSection>
+				<span>{countryData.emoji}</span>
+				<h4>{countryData.name}</h4>
+			</StyledTopSection>
+			<section>
+				<p>
+					<StyledExtraInfoSpan>Capital</StyledExtraInfoSpan>:{' '}
+					{countryData.capital || 'No Found'}
+				</p>
+				<p>
+					<StyledExtraInfoSpan>Currency</StyledExtraInfoSpan>:{' '}
+					{countryData.currency || 'No Found'}
+				</p>
+				<p>
+					<StyledExtraInfoSpan>Native Language</StyledExtraInfoSpan>:{' '}
+					{countryData.languages[0]?.name || 'No Found'}
+				</p>
+			</section>
+		</StyledArticle>
+	</>
 );
