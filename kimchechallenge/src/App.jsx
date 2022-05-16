@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useQuery } from '@apollo/react-hooks';
+import styled from 'styled-components';
+import useDebounce from './hooks/useDebounce';
 import { GET_COUNTRIES } from './lib/graphql';
 import { Container } from './components/Container/index.component';
 import { Button } from './components/Button/index.component';
 import { Input } from './components/Input/index.component';
-import styled from 'styled-components';
 import { SearchIcon } from './components/Icons';
 import { CountriesList } from './components/Country/index.component';
-import countries from './lib/graphql/countries';
-import useDebounce from './hooks/useDebounce';
 import { Message } from './components/Message/index.components';
 
 const COUNTRIES_FILTERS = ['continent', 'language'];
