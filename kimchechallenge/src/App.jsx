@@ -9,6 +9,7 @@ import { SearchIcon } from './components/Icons';
 import { CountriesList } from './components/Country/index.component';
 import countries from './lib/graphql/countries';
 import useDebounce from './hooks/useDebounce';
+import { Message } from './components/Message/index.components';
 
 const COUNTRIES_FILTERS = ['continent', 'language'];
 
@@ -57,11 +58,13 @@ const App = () => {
 	const handleFilter = filterName => {
 		setCurrentFilter(filterName);
 	};
-	if (error) return <h1>Error</h1>;
+
+	if (error)
+		return <Message type='error'>Error. Please, reload the page.</Message>;
 	return (
 		<StyledLayout>
 			<Title>Country Search</Title>
-			<FormContainer as='form'>
+			<FormContainer onSubmit={e => e.preventDefault} as='form'>
 				<Container>
 					<SearchIcon />
 					<Input
@@ -90,14 +93,14 @@ const App = () => {
 			</FormContainer>
 			<FormContainer as={'div'}>
 				{firstSearch ? (
-					<span>Search for Something</span>
+					<Message type='info'>Search for something</Message>
 				) : !loading ? (
 					<CountriesList
 						currentFilter={currentFilter}
 						countries={filteredCountries}
 					/>
 				) : (
-					<>Loading...</>
+					<Message type='info'>Loading...</Message>
 				)}
 			</FormContainer>
 		</StyledLayout>
