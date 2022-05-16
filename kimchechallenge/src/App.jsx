@@ -6,7 +6,7 @@ import { Button } from './components/Button/index.component';
 import { Input } from './components/Input/index.component';
 import styled from 'styled-components';
 import { SearchIcon } from './components/Icons';
-import { ContinentsList } from './components/Continent/index.component';
+import { CountriesList } from './components/Country/index.component';
 import countries from './lib/graphql/countries';
 import useDebounce from './hooks/useDebounce';
 
@@ -92,7 +92,7 @@ const App = () => {
 				{firstSearch ? (
 					<span>Search for Something</span>
 				) : !loading ? (
-					<ContinentsList
+					<CountriesList
 						currentFilter={currentFilter}
 						countries={filteredCountries}
 					/>
