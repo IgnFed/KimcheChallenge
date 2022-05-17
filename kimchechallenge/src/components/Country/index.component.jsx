@@ -2,10 +2,10 @@ import React from 'react';
 import { Card } from '../Card/index.component';
 import StyledList from './index.styled';
 
-export const CountriesList = ({
+export default function CountriesList({
 	currentFilter = 'continent',
 	countries = [],
-}) => {
+}) {
 	return (
 		<StyledList>
 			{countries.length === 0
@@ -17,4 +17,4 @@ export const CountriesList = ({
 				  ))}
 		</StyledList>
 	);
-};
+}

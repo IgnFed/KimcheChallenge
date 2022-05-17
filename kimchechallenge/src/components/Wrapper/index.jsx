@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
+import { ApolloProvider } from '@apollo/react-hooks';
+import ApolloClient from 'apollo-boost';
+import { AnimatePresence, motion } from 'framer-motion/dist/framer-motion';
 import { lightTheme, darkTheme } from '../../lib/styled-components/themes';
 import GlobalSyles from '../../lib/styled-components/GlobalSyles';
 import Button from '../Button/index.styled';
 import { MoonIcon, SunIcon } from '../Icons';
-import { ApolloProvider } from '@apollo/react-hooks';
-import ApolloClient from 'apollo-boost';
-import { AnimatePresence, motion } from 'framer-motion/dist/framer-motion';
 
 const CLIENT = new ApolloClient({
 	uri: 'https://countries.trevorblades.com/',
@@ -30,7 +30,7 @@ const StyledWrapper = styled(motion.main)`
 	transition: background-color 0.2s;
 `;
 
-export const Wrapper = ({ children }) => {
+export default function Wrapper({ children }) {
 	const [theme, setTheme] = useState({ mode: 'dark', themeObj: darkTheme });
 	const ToggleTheme = () => {
 		switch (theme.mode) {
@@ -39,6 +39,9 @@ export const Wrapper = ({ children }) => {
 				break;
 			case 'dark':
 				setTheme({ mode: 'light', themeObj: lightTheme });
+				break;
+			default:
+				break;
 		}
 	};
 
@@ -61,4 +64,4 @@ export const Wrapper = ({ children }) => {
 			</ThemeProvider>
 		</AnimatePresence>
 	);
-};
+}

@@ -1,6 +1,8 @@
 import React from 'react';
 import StyledInput from './index.styled';
 
-export const Input = ({ value, onChange, placeholder }) => (
-	<StyledInput onChange={onChange} value={value} placeholder={placeholder} />
-);
+export default function Input({ value, onChange, placeholder }) {
+	return (
+		<StyledInput onChange={onChange} value={value} placeholder={placeholder} />
+	);
+}
