@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card } from '../Card/index.component';
+import Card from '../Card/index.component';
 import StyledList from './index.styled';
 
 export default function CountriesList({
