@@ -1,14 +1,14 @@
 module.exports = {
 	env: {
 		browser: true,
-		es6: true,
+		es2021: true,
 	},
 	settings: {
 		react: {
 			version: 'detect',
 		},
 	},
-	extends: ['plugin:react/recommended', 'standard', 'eslint-config-prettier'],
+	extends: ['plugin:react/recommended', 'airbnb', 'eslint-config-prettier'],
 	globals: {
 		Atomics: 'readonly',
 		SharedArrayBuffer: 'readonly',
@@ -17,9 +17,11 @@ module.exports = {
 		ecmaFeatures: {
 			jsx: true,
 		},
-		ecmaVersion: 2018,
+		ecmaVersion: 'latest',
 		sourceType: 'module',
 	},
 	plugins: ['react'],
-	rules: {},
+	rules: {
+		'react/props-types': 'off',
+	},
 };
